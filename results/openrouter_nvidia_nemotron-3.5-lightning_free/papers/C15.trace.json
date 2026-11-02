@@ -1,0 +1,175 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "a657709b100e428e97a107e8eac047619ab40da62fa17d0f6a8cfa53e2233a07",
+  "invoice_sha256": "4deed8c908a3471862928779e0dac0721d4711db734468c634c3853a15683f0d",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Quill Compute Inc.",
+    "amount": 34000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": false,
+      "detail": "model ROYALTY; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "INSUFFICIENT_FACTS",
+      "reason": "Facts do not identify what is being paid for."
+    },
+    {
+      "code": "TWO_KEY_DISAGREEMENT",
+      "reason": "Model proposed ROYALTY; fact table gave UNRESOLVED."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "nvidia/nemotron-3.5-lightning:free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3.5-lightning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "yes",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "yes",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "yes"
+  },
+  "evidence": [
+    {
+      "fact": "knowhow_transfer",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 134,
+      "quote": "Quill will train Customer's engineers so that they can operate and extend the Quill optimisation technique without Quill's assistance."
+    },
+    {
+      "fact": "usage_training_beyond_initial",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 134,
+      "quote": "Quill will train Customer's engineers so that they can operate and extend the Quill optimisation technique without Quill's assistance."
+    },
+    {
+      "fact": "net_of_tax_clause",
+      "value": "yes",
+      "document": "contract",
+      "start": 135,
+      "end": 219,
+      "quote": "Customer bears any Indian withholding tax so that Quill receives USD 34,000 in full."
+    }
+  ],
+  "decision": {
+    "category": null,
+    "code": "INSUFFICIENT_FACTS",
+    "reason": "Facts do not identify what is being paid for."
+  },
+  "model_reasoning_unverified": "Payment of USD 34,000 for technique transfer and training with customer bearing Indian withholding tax. Knowhow transfer confirmed; copyright, program transfer, software access, India presence, and mixed allocation not settled. Category proposed as royalty per technique transfer nature.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "technical_service",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "software_access_only",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:CONTESTED_TRAINING"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "528000",
+    "FIS": "528000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "45f4bbb205bc5dbbdba850d60093ebb3a60f22b0f66fb9b3a1a5e977caa3f919"
+}

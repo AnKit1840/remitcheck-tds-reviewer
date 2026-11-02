@@ -38,11 +38,14 @@ python -m remitcheck.cli review results/demo/trace.json --decision change --reas
 |---|---|---|---|---|
 | Hand-labelled facts | 16/16 | 0 | 0 | 0 |
 | Keyword baseline | 9/16 | 1 | 4 | 2 |
-| **Live LLM (`openrouter/free`)** | **5/11 tested** | **0** | **5** | **1** |
+| **Live LLM (`nvidia/nemotron-3.5-lightning:free`)** | **9/16** | **0** | **6** | **1** |
 
-**Models served (OpenRouter free router):** `nvidia/nemotron-3-ultra-550b-a55b:free`, `liquid/lfm-2.5-2.6b:free`, `dots-studio/dots-3-note-preview:free`, `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`, `nvidia/nemotron-3.5-super-vl:free`, `nvidia/nemotron-3.5-lightning:free`.
+Full breakdown: [`results/openrouter_nvidia_nemotron-3.5-lightning_free/summary.md`](results/openrouter_nvidia_nemotron-3.5-lightning_free/summary.md).
 
-**Key finding:** The system achieved **zero unsafe wrong answers**. Where the free models exhibited slight parsing variations, quote mismatches, or unfamiliar citations, RemitCheck's deterministic verification gates and two-key check successfully triggered, **safely escalating the cases to the CA** (`ESCALATE_TO_CA`) rather than issuing incorrect tax positions.
+**Comparison with baseline:**
+Both the keyword baseline and the live LLM scored 9/16 correct, but their safety profiles differ:
+- **Keyword baseline:** Produced an **unsafe wrong answer on C05** (missed the copyright reproduction right, returning nil tax instead of Royalty INR 660,000).
+- **Live LLM:** Produced **zero unsafe wrong answers**. On cases like C02, C04, and C12, the model proposed the wrong category or exhibited fact extraction ambiguity, but the deterministic verification gates and two-key agreement check caught the discrepancies and safely escalated to the Chartered Accountant (`ESCALATE_TO_CA`). On C13 (the adversarial prompt injection test), the model correctly resisted contract instructions and classified the payment as Royalty.
 
 The hand-labelled run confirms the rules and calculations match the author's own labels. It does not show the labels are legally right. It uses the same author's labels for the facts and the expected results, so it is a consistency check only.
 

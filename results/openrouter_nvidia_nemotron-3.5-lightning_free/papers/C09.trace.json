@@ -1,0 +1,177 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "736253709fe8266982207cf360f9775eaf5ef1f288ede628404c89e56f49bf68",
+  "invoice_sha256": "dcd0aec7c388551c2f1cb9870d1d42c25162b21c1bb0a03dbda4280bdbb713f7",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": null,
+    "trc_to": null,
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Orbit Fonts Inc.",
+    "amount": 20000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model ROYALTY; table ROYALTY"
+    }
+  ],
+  "escalations": [],
+  "flags": [
+    "Rule act_royalty_pct rests on a secondary source; CA to confirm.",
+    "Rule surcharge_bands_pct rests on a carried_forward source; CA to confirm.",
+    "Rule cess_pct rests on a carried_forward source; CA to confirm."
+  ],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "nvidia/nemotron-3.5-lightning:free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3.5-lightning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "yes",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "copyright_rights_granted",
+      "value": "yes",
+      "document": "contract",
+      "start": 6,
+      "end": 112,
+      "quote": "grants Customer the right to reproduce and distribute the Orbit typeface in Customer's published products."
+    }
+  ],
+  "decision": {
+    "category": "ROYALTY",
+    "code": "OK",
+    "reason": "Customer receives rights to exploit copyright."
+  },
+  "model_reasoning_unverified": "Single USD 20,000 fee for Orbit typeface license granting reproduction/distribution rights; no evidence of program/design transfer, technical service, training, India presence, tax clause, or mixed bundling. Category proposed as royalty under treaty Article 12 framework.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "cannot compute: TREATY_DOCS_MISSING_FOR_NIL_RATE",
+    "ROYALTY": "366080",
+    "FIS": "366080"
+  },
+  "status": "READY_FOR_CA_REVIEW",
+  "category": "ROYALTY",
+  "tax": {
+    "gross_inr": "1760000",
+    "tds_inr": "366080",
+    "effective_rate_pct": "20.80",
+    "basis": "act",
+    "steps": [
+      "20000 USD x 88.00 = INR 1,760,000.00",
+      "Treaty unavailable (TRC valid on the remittance date). 20% x (1+0%) x (1+4%) = 20.80%",
+      "TDS = 1,760,000.00 x 20.80% = INR 366,080"
+    ],
+    "rules_used": [
+      "act_royalty_pct",
+      "surcharge_bands_pct",
+      "cess_pct"
+    ]
+  },
+  "forms": {
+    "route": "Form 145 Part C + Form 146",
+    "certificate_required": true,
+    "flag": null
+  },
+  "authorities": {
+    "ART12_RATE": {
+      "title": "India-US treaty Art. 12(2): source-country tax on royalties and included services",
+      "summary": "Capped at 15% of gross for ordinary royalties and fees for included services.",
+      "status": "secondary",
+      "source": "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+    },
+    "ART12_3_ROYALTY": {
+      "title": "India-US treaty Art. 12(3): royalties",
+      "summary": "Payment for use of, or the right to use, copyright and similar rights. Narrower than the domestic definition.",
+      "status": "secondary",
+      "source": "https://jurigram.com/blog/corporate-law/india-us-tax-treaty-dtaa-for-businesses-royalty-and-fts-withholding"
+    },
+    "TREATY_RELIEF_DOCS": {
+      "title": "Income-tax Act 2025 s.159(8), Rule 75 and Form 41",
+      "summary": "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41.",
+      "status": "official",
+      "source": "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"
+    }
+  },
+  "trace_sha256": "4fbb647a1647271b5ac4af97fd2131ad84f24aff38bd7e5c4f6bc8867dc32566"
+}

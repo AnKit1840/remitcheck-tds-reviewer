@@ -1,0 +1,131 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "5825581fc3c1c34b3673c945520859da5b2553068034e96278498ea54fe7bf21",
+  "invoice_sha256": "e20a23d1a641253d454fed329042aa28469678271bbc970691fba62a8deff6e0",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Vantage AI Inc.",
+    "amount": 80000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model UNRESOLVED; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "MIXED_UNALLOCATED",
+      "reason": "One price covers items that may have different tax treatment."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "nvidia/nemotron-3.5-lightning:free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3.5-lightning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "yes",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "mixed_unallocated",
+      "value": "yes",
+      "document": "contract",
+      "start": 141,
+      "end": 201,
+      "quote": "The fee is not split between the platform and the programme."
+    }
+  ],
+  "decision": {
+    "category": null,
+    "code": "MIXED_UNALLOCATED",
+    "reason": "One price covers items that may have different tax treatment."
+  },
+  "model_reasoning_unverified": "Contract fee of USD 80,000 covers Vantage ML platform and engineering enablement programme without split. Docs do not specify copyright transfer, source code, tax treaty classification, or withholding terms. Mixed unallocated due to un-split distinct components.",
+  "what_would_change": [
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "1056000",
+    "FIS": "1056000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "0ffd4d7fd846dcc8c3a0a2700fabb0b37b1e3ffff0adb739d789935590008a38"
+}

@@ -1,0 +1,185 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "2c512ff792b21cdcd7dcd0351782281675b5bae0201879b6bdf095ee03f026ce",
+  "invoice_sha256": "ada2c7b44fe8ab364e7dae928ae88ad9f417383e7eee208e487ae971b0dceaa4",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Halyard Systems Inc.",
+    "amount": 40000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": false,
+      "detail": "model BUSINESS_PROFITS_NO_PE; table FIS"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "TWO_KEY_DISAGREEMENT",
+      "reason": "Model proposed BUSINESS_PROFITS_NO_PE; fact table gave FIS."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "nvidia/nemotron-3.5-lightning:free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3.5-lightning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "yes",
+    "knowhow_transfer": "yes",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "no",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "technical_service",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 137,
+      "quote": "Halyard engineers will teach Customer's data team the Halyard method for designing fraud models, working remotely from the United States."
+    },
+    {
+      "fact": "knowhow_transfer",
+      "value": "yes",
+      "document": "contract",
+      "start": 138,
+      "end": 258,
+      "quote": "On completion, Customer's team will be able to build and tune such models on its own, without further help from Halyard."
+    },
+    {
+      "fact": "india_presence",
+      "value": "no",
+      "document": "contract",
+      "start": 97,
+      "end": 137,
+      "quote": "working remotely from the United States."
+    }
+  ],
+  "decision": {
+    "category": "FIS",
+    "code": "OK",
+    "reason": "Technical service enables the customer to apply the technology."
+  },
+  "model_reasoning_unverified": "Payment is for remote training services with no IP transfer or software license; vendor has no Indian presence; thus likely business profits without permanent establishment under the treaty.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "technical_service",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    },
+    {
+      "fact": "knowhow_transfer",
+      "from": "yes",
+      "to": "no",
+      "outcome": "BUSINESS_PROFITS_NO_PE"
+    },
+    {
+      "fact": "india_presence",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "528000",
+    "FIS": "528000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": "FIS",
+  "authorities": {
+    "ART12_RATE": {
+      "title": "India-US treaty Art. 12(2): source-country tax on royalties and included services",
+      "summary": "Capped at 15% of gross for ordinary royalties and fees for included services.",
+      "status": "secondary",
+      "source": "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+    },
+    "ART12_4B_MAKE_AVAILABLE": {
+      "title": "India-US treaty Art. 12(4)(b) and MoU: make available",
+      "summary": "Technical or consultancy services count only if the acquirer is enabled to apply the technology, or a technical plan or design is developed and transferred. Using a product that embodies technology is not enough.",
+      "status": "official",
+      "source": "https://www.llmtax.uzh.ch/dam/jcr:88df95b6-4ebe-4440-9526-0bb2cfbe4614/1.%20India%20USA%20MoU%20concerning%20fees%20for%20included%20services%20in%20Article%2012.pdf"
+    },
+    "TREATY_RELIEF_DOCS": {
+      "title": "Income-tax Act 2025 s.159(8), Rule 75 and Form 41",
+      "summary": "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41.",
+      "status": "official",
+      "source": "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"
+    }
+  },
+  "trace_sha256": "0ff6c30b36c94a8ae9ea13a0d85bdca1d43f229efabb0e4ff5b72617c27a1e29"
+}

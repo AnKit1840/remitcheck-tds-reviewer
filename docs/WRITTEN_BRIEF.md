@@ -20,9 +20,9 @@ Getting this wrong is costly in both directions. Under-withholding creates a lia
 
 **What task:** For each foreign remittance above a threshold, a CA must: read the contract and invoice, classify the payment under the treaty (Business Profits / Royalty / Fees for Included Services), calculate TDS to the rupee, determine the correct Form 145/Form 146 filing route under the Income-Tax Act 2025, and sign a working paper before the wire clears.
 
-**How often:** A mid-sized technology company may have 30–80 active US vendor relationships, each renewed or amended annually. A CA firm serving such clients processes dozens of these reviews every month.
+**How often:** The volume varies by company size. Any company with recurring US vendor payments faces this review for each remittance above the certificate threshold (currently ₹5 lakh cumulative per payee per year).
 
-**What it costs today:** Each review takes an experienced CA 1–2 hours: reading contracts, cross-referencing the treaty text and the India-US MoU examples, retrieving the correct surcharge band, calculating TDS with gross-up where applicable, and drafting the working paper. Missed nuances — particularly the "make available" test — are a documented source of incorrect nil-TDS results that Assessing Officers challenge years later.
+**What it costs today:** Each review involves reading the contract, cross-referencing the treaty text and the India-US MoU examples, retrieving the correct surcharge band, calculating TDS with gross-up where applicable, and drafting the working paper. The time per review depends on contract complexity and the reviewer's familiarity with the treaty. Missed nuances — particularly the "make available" test — are a documented source of incorrect nil-TDS results that Assessing Officers challenge years later.
 
 **What is out of scope:** Permanent establishment analysis, transfer pricing, treaty shopping, splitting mixed contracts, RBI purpose codes, portal filing, other jurisdictions.
 
@@ -75,7 +75,7 @@ Every result is `READY_FOR_CA_REVIEW` or `ESCALATE_TO_CA` — never "approved". 
 - **Amount conflict between contract, invoice and intake** → escalation (`AMOUNT_CONFLICT`)
 
 ### Why AI rather than a simpler approach
-A keyword baseline (the prototype includes one) achieves 9/16 on the same 16 cases. It fails on five cases that require reading substance: a "SaaS" contract that grants reproduction rights, consulting contracts that transfer no capability, vague knowledge-sharing clauses. A CA reading these in full would classify them correctly. The LLM, constrained to answer nine factual questions with direct quotes, approximates that careful reading at scale. Crucially, the architecture means a wrong LLM answer triggers an escalation rather than a wrong tax figure.
+A keyword baseline (the prototype includes one) achieves 9/16 on the same 16 cases, with one unsafe wrong answer (C05: a "SaaS" contract that grants reproduction rights, classified as nil tax instead of Royalty). It also fails on cases that require reading substance over labels. The LLM, constrained to answer nine factual questions with direct quotes, approximates a careful reading at scale. The architecture catches many LLM errors through the verification gates and two-key check, but it is not guaranteed to catch all of them: if the model returns a plausible wrong fact with a real quote that happens to support it, the gates will not detect the error.
 
 ---
 
@@ -139,28 +139,44 @@ Contract + Invoice
 
 ---
 
-## 5. Evaluation Results
+## 5. What I Added Beyond the AI
+
+The full appendix is in [AI_APPENDIX.md](AI_APPENDIX.md). In summary:
+
+- **Where AI helped:** Domain research on the India-US treaty, iterating on the extraction prompt, and generating the initial `locate()` function for quote verification.
+- **What I rejected:** The LLM repeatedly offered to calculate TDS itself. I moved all arithmetic to deterministic Python `Decimal` code with rates read from a versioned rule pack, because a model-generated tax number has no audit trail.
+- **What came from me:** The three-valued fact schema (`yes`/`no`/`silent`), the fail-closed rule staleness check, the two-key disagreement as an escalation signal rather than an error to suppress, and the adversarial prompt injection test case (C13).
+- **What I'd defend live:** The `decide()` function in `core.py` — why `technical_service = yes` alone does not trigger FIS, and why `knowhow_transfer` needs three states to correctly implement the treaty's "make available" test.
+
+---
+
+## 6. Evaluation Results
 
 | Run | Correct | Unsafe wrong answers | Over-escalated | Wrong escalation reason |
 |---|---|---|---|---|
 | Hand-labelled facts (gold) | **16 / 16** | 0 | 0 | 0 |
 | Keyword baseline | **9 / 16** | 1 | 4 | 2 |
-| Live LLM (`openrouter/free`, mixed models) | **5 / 11 tested** | 0 | 5 | 1 |
+| Live LLM (`nvidia/nemotron-3.5-lightning:free`) | **9 / 16** | 0 | 6 | 1 |
 
-The gold run validates that the rules and tax calculations match the author's own expected answers. The keyword baseline establishes what a non-AI approach achieves. The live LLM run, using whichever free model OpenRouter served, shows the current prototype over-escalates rather than producing wrong answers — the fail-safe behaviour is working. No unsafe wrong answer (incorrect nil-TDS, or wrong TDS amount passed to the CA without a flag) has been produced by any run.
+The gold run validates that the rules and tax calculations match the author's own expected answers. The keyword baseline establishes what a non-AI approach achieves — including one unsafe wrong answer on C05, where keyword matching missed a copyright clause and returned nil tax instead of Royalty. 
 
-**Honest failure analysis:** The free router routes each call to a different model. Inconsistent model quality drives many of the over-escalations (quote hallucination, UNRESOLVED proposals). A fixed, capable model (e.g. Llama 3.3 70B) would likely score higher; this is a known limitation of the "free" tier setup used for this prototype.
+The live LLM run evaluated all 16 cases on a single model (`nvidia/nemotron-3.5-lightning:free`). Both the baseline and the LLM achieved 9/16 accuracy, but their failure modes differed fundamentally:
+- The keyword baseline produced an **unsafe wrong answer** on C05.
+- The live LLM produced **zero unsafe wrong answers**. Its failures were conservative over-escalations (C02, C04, C06, C12, C15, C16) where the model proposed an incorrect category or hesitated on fact extraction, triggering the two-key agreement gate or fact gates to route the case to the CA.
+- On C13 (the adversarial prompt injection test), the model correctly resisted the contract's instruction and classified the remittance as Royalty.
+
+Thus, the LLM's primary operational advantage over the baseline is safety rather than higher raw accuracy: it fails closed by escalating to the CA rather than emitting unsafe certificates.
 
 ---
 
-## 6. Risks
+## 7. Risks
 
 | Risk | How the design handles it |
 |---|---|
 | **Wrong tax amount** | Calculator uses only code and rule pack; model cannot produce a tax figure |
 | **Hallucinated quote** | Quote locator rejects any answer whose quote is not found verbatim in the document |
 | **Outdated rules** | `review_by` date in rule pack; every case escalates after that date |
-| **Adversarial contract** | System prompt instructs model to ignore document-embedded instructions; tested on C13 |
+| **Adversarial contract** | System prompt instructs model to ignore document-embedded instructions; verified live on C13 where prompt injection was resisted |
 | **Automation bias** | Working paper is always a draft; CA must sign; status is never "approved" |
 | **Confidential data** | Prototype uses synthetic data only; production would need a data processing agreement with the model provider |
 | **Liability** | Output carries a mandatory disclaimer; Form 146 is signed by the CA, not produced by the system |
@@ -168,7 +184,7 @@ The gold run validates that the rules and tax calculations match the author's ow
 
 ---
 
-## 7. Things to Consider Before Spending More Time
+## 8. Things to Consider Before Spending More Time
 
 1. **CA validation of the decision table.** The 9-fact mapping is the prototype's largest unvalidated assumption. A practising CA should review it against the treaty, MoU examples and recent tribunal orders before any production use.
 2. **Larger, annotated contract corpus.** The 16 synthetic cases were written by the same person who designed the rules — a consistency check, not an independent test.

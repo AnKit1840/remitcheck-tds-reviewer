@@ -1,0 +1,173 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "3f3399107d90ef9850ebb6e8516bff2806c6afa8a62290c735d08161bad7597a",
+  "invoice_sha256": "64def8c1dc49a4d1f78593b2cbdd866510ecdc8c7d0a71942836d745b51e2d1c",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Lumen Stack Inc.",
+    "amount": 50000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model ROYALTY; table ROYALTY"
+    }
+  ],
+  "escalations": [],
+  "flags": [
+    "Rule treaty_royalty_pct rests on a secondary source; CA to confirm."
+  ],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "nvidia/nemotron-3.5-lightning:free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3.5-lightning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "yes",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "copyright_rights_granted",
+      "value": "yes",
+      "document": "contract",
+      "start": 100,
+      "end": 229,
+      "quote": "Customer may copy the Lumen client library, embed it in apps sold to Customer's own customers, and create adapted versions of it."
+    }
+  ],
+  "decision": {
+    "category": "ROYALTY",
+    "code": "OK",
+    "reason": "Customer receives rights to exploit copyright."
+  },
+  "model_reasoning_unverified": "The subscription grants copyright rights including modification and distribution of the client library, characteristic of royalty-bearing software licensing under the India-US treaty, though final classification requires treaty analysis.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "660000",
+    "FIS": "660000"
+  },
+  "status": "READY_FOR_CA_REVIEW",
+  "category": "ROYALTY",
+  "tax": {
+    "gross_inr": "4400000",
+    "tds_inr": "660000",
+    "effective_rate_pct": "15",
+    "basis": "treaty",
+    "steps": [
+      "50000 USD x 88.00 = INR 4,400,000.00",
+      "Treaty rate 15% (no surcharge or cess)",
+      "TDS = 4,400,000.00 x 15% = INR 660,000"
+    ],
+    "rules_used": [
+      "treaty_royalty_pct"
+    ]
+  },
+  "forms": {
+    "route": "Form 145 Part C + Form 146",
+    "certificate_required": true,
+    "flag": null
+  },
+  "authorities": {
+    "ART12_RATE": {
+      "title": "India-US treaty Art. 12(2): source-country tax on royalties and included services",
+      "summary": "Capped at 15% of gross for ordinary royalties and fees for included services.",
+      "status": "secondary",
+      "source": "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+    },
+    "ART12_3_ROYALTY": {
+      "title": "India-US treaty Art. 12(3): royalties",
+      "summary": "Payment for use of, or the right to use, copyright and similar rights. Narrower than the domestic definition.",
+      "status": "secondary",
+      "source": "https://jurigram.com/blog/corporate-law/india-us-tax-treaty-dtaa-for-businesses-royalty-and-fts-withholding"
+    },
+    "TREATY_RELIEF_DOCS": {
+      "title": "Income-tax Act 2025 s.159(8), Rule 75 and Form 41",
+      "summary": "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41.",
+      "status": "official",
+      "source": "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"
+    }
+  },
+  "trace_sha256": "2e045ccf3f5a735b5a6d653b6c2b60c0ce04c2aaa9ecf32b167615b8560d2820"
+}

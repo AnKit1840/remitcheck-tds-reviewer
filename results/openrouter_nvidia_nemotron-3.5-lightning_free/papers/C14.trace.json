@@ -1,0 +1,137 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "f2422ae89a906e74624f62900eac77b74b07748bd40eabbd98d3e956200b9e85",
+  "invoice_sha256": "98bd7dfad8ece7923a890273fd0422ed9a1a60f4d5f84cae487e174552db9bee",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Atlas Integrators Inc.",
+    "amount": 90000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": false,
+      "detail": "model BUSINESS_PROFITS_NO_PE; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "PE_RISK",
+      "reason": "Payee presence in India; permanent establishment analysis is out of scope."
+    },
+    {
+      "code": "TWO_KEY_DISAGREEMENT",
+      "reason": "Model proposed BUSINESS_PROFITS_NO_PE; fact table gave UNRESOLVED."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "nvidia/nemotron-3.5-lightning:free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3.5-lightning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "yes",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "yes",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "technical_service",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 105,
+      "quote": "Atlas will place four engineers at Customer's Pune office for nine months to run the systems integration."
+    },
+    {
+      "fact": "india_presence",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 105,
+      "quote": "Atlas will place four engineers at Customer's Pune office for nine months to run the systems integration."
+    }
+  ],
+  "decision": {
+    "category": null,
+    "code": "PE_RISK",
+    "reason": "Payee presence in India; permanent establishment analysis is out of scope."
+  },
+  "model_reasoning_unverified": "The contract involves placing four engineers at a Pune office for 9 months to run systems integration (USD 90,000). No IP, software access, or copyright transfers are indicated. The payment is for technical services, with vendor staff present in India, suggesting business profits category under the treaty, not royalty.",
+  "what_would_change": [
+    {
+      "fact": "india_presence",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:MISSING_MAKE_AVAILABLE_FACT"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "1188000",
+    "FIS": "1188000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "497e5a0e7083d6bea948fb35c21a7afc14f66daa7b6c4e1fd4d45ab0b177984e"
+}
