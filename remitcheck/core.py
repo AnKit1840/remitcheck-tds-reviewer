@@ -22,7 +22,7 @@ REQUIRED_AUTHORITIES = {
 
 
 def load_yaml(name):
-    return yaml.safe_load((ROOT / "knowledge" / name).read_text())
+    return yaml.safe_load((ROOT / "knowledge" / name).read_text(encoding="utf-8"))
 
 
 def d(value) -> Decimal:

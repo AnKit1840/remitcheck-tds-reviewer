@@ -49,7 +49,7 @@ def main():
     p.add_argument("--model"); p.add_argument("--pause", type=float, default=4)
     a = p.parse_args()
     root = Path(__file__).resolve().parent.parent
-    data = yaml.safe_load((root / "eval/cases.yaml").read_text())
+    data = yaml.safe_load((root / "eval/cases.yaml").read_text(encoding="utf-8"))
     tag = a.reader if a.reader != "openrouter" else "openrouter_" + (a.model or "default").replace("/", "_").replace(":", "_")
     out = root / "results" / tag
     (out / "papers").mkdir(parents=True, exist_ok=True)
@@ -60,15 +60,15 @@ def main():
         reader = live or (BaselineReader() if a.reader == "baseline" else GoldAmounts(case))
         t = run_case(case["contract"], case["invoice"], intake, reader, AS_OF)
         rows.append(score(case, t))
-        (out / "papers" / f"{case['id']}.md").write_text(render_paper(t))
-        (out / "papers" / f"{case['id']}.trace.json").write_text(json.dumps(t, indent=2, default=str))
+        (out / "papers" / f"{case['id']}.md").write_text(render_paper(t), encoding="utf-8")
+        (out / "papers" / f"{case['id']}.trace.json").write_text(json.dumps(t, indent=2, default=str), encoding="utf-8")
         if live:
             time.sleep(a.pause)
     n = len(rows)
     count = lambda r: sum(x["result"] == r for x in rows)
     summary = {"reader": tag, "cases": n, "correct": count("correct"), "unsafe_wrong_answers": count("UNSAFE_WRONG_ANSWER"),
                "over_escalated": count("over_escalated"), "escalated_wrong_reason": count("escalated_wrong_reason")}
-    served = sorted({json.loads((out / "papers" / f"{c['id']}.trace.json").read_text()).get("reader", {}).get("served_model") or "" for c in data["cases"]} - {""})
+    served = sorted({json.loads((out / "papers" / f"{c['id']}.trace.json").read_text(encoding="utf-8")).get("reader", {}).get("served_model") or "" for c in data["cases"]} - {""})
     if served:
         summary["served_models"] = served
     L = [f"# Evaluation: {tag}", "", "Synthetic cases. Labels are the author's and have not been validated by a CA.", "",
@@ -78,8 +78,8 @@ def main():
     L += ["| Case | Scenario | Expected | Got | Category | TDS | Codes | Result | Fact errors |", "|---|---|---|---|---|---|---|---|---|"]
     for r in rows:
         L.append(f"| {r['id']} | {r['title']} | {r['expected']} | {r['got']} | {r['category'] or '-'} | {r['tds'] or '-'} | {', '.join(r['codes']) or '-'} | {r['result']} | {', '.join(r['fact_errors']) or '-'} |")
-    (out / "summary.md").write_text("\n".join(L) + "\n")
-    (out / "summary.json").write_text(json.dumps({"summary": summary, "rows": rows}, indent=2))
+    (out / "summary.md").write_text("\n".join(L) + "\n", encoding="utf-8")
+    (out / "summary.json").write_text(json.dumps({"summary": summary, "rows": rows}, indent=2), encoding="utf-8")
     print("\n".join(L))
 
 

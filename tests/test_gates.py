@@ -108,8 +108,11 @@ def test_openrouter_client_parses_and_retries():
 
     srv = HTTPServer(("127.0.0.1", 0), H)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
-    r = OpenRouterReader(model="m", key="k", base_url=f"http://127.0.0.1:{srv.server_port}", pause=0)
-    t = run_case(CONTRACT, INVOICE, INTAKE, r, "2026-11-03")
-    srv.shutdown()
+    try:
+        r = OpenRouterReader(model="m", key="k", base_url=f"http://127.0.0.1:{srv.server_port}", pause=0)
+        t = run_case(CONTRACT, INVOICE, INTAKE, r, "2026-11-03")
+    finally:
+        srv.shutdown()
+        srv.server_close()
     assert t["status"] == READY and t["reader"]["served_model"] == "served/x" and len(calls) == 2
     assert "untrusted" in calls[0]["messages"][0]["content"]
