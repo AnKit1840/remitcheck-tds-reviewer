@@ -1,0 +1,177 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "9982b3d79409f880a1c6009771bceaeb5413216a6389affae8f10386f9b01571",
+  "invoice_sha256": "f6884adda27b548691911faab8b7ce5e83cdd1194ece8bb7fcc90b428316b463",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Pike Media Inc.",
+    "amount": 35000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model ROYALTY; table ROYALTY"
+    }
+  ],
+  "escalations": [],
+  "flags": [
+    "Rule treaty_royalty_pct rests on a secondary source; CA to confirm."
+  ],
+  "reader": {
+    "reader": "baseline_keywords"
+  },
+  "facts": {
+    "copyright_rights_granted": "yes",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "yes",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "copyright_rights_granted",
+      "value": "yes",
+      "document": "contract",
+      "start": 16,
+      "end": 100,
+      "quote": "Customer may reproduce and sublicense Pike's video codec in its own commercial apps."
+    },
+    {
+      "fact": "software_access_only",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 15,
+      "quote": "SaaS Agreement."
+    }
+  ],
+  "decision": {
+    "category": "ROYALTY",
+    "code": "OK",
+    "reason": "Customer receives rights to exploit copyright."
+  },
+  "model_reasoning_unverified": "Keyword baseline.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "yes",
+      "to": "no",
+      "outcome": "BUSINESS_PROFITS_NO_PE"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "462000",
+    "FIS": "462000"
+  },
+  "status": "READY_FOR_CA_REVIEW",
+  "category": "ROYALTY",
+  "tax": {
+    "gross_inr": "3080000",
+    "tds_inr": "462000",
+    "effective_rate_pct": "15",
+    "basis": "treaty",
+    "steps": [
+      "35000 USD x 88.00 = INR 3,080,000.00",
+      "Treaty rate 15% (no surcharge or cess)",
+      "TDS = 3,080,000.00 x 15% = INR 462,000"
+    ],
+    "rules_used": [
+      "treaty_royalty_pct"
+    ]
+  },
+  "forms": {
+    "route": "Form 145 Part C + Form 146",
+    "certificate_required": true,
+    "flag": null
+  },
+  "authorities": {
+    "ART12_RATE": {
+      "title": "India-US treaty Art. 12(2): source-country tax on royalties and included services",
+      "summary": "Capped at 15% of gross for ordinary royalties and fees for included services.",
+      "status": "secondary",
+      "source": "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+    },
+    "ART12_3_ROYALTY": {
+      "title": "India-US treaty Art. 12(3): royalties",
+      "summary": "Payment for use of, or the right to use, copyright and similar rights. Narrower than the domestic definition.",
+      "status": "secondary",
+      "source": "https://jurigram.com/blog/corporate-law/india-us-tax-treaty-dtaa-for-businesses-royalty-and-fts-withholding"
+    },
+    "TREATY_RELIEF_DOCS": {
+      "title": "Income-tax Act 2025 s.159(8), Rule 75 and Form 41",
+      "summary": "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41.",
+      "status": "official",
+      "source": "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"
+    }
+  },
+  "trace_sha256": "5915e4a183ad306122827a789d2953552ce931b3d44f22a855339e87326cf015"
+}

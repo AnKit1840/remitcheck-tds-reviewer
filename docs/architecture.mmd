@@ -1,0 +1,57 @@
+flowchart TB
+  subgraph IN["Inputs"]
+    A["Contract and invoice<br/>untrusted text"]
+    B["Finance intake form<br/>amount, FX, dates, TRC, Form 41, PAN"]
+  end
+  subgraph AI["Probabilistic: LLM"]
+    C["Fact reader<br/>9 facts with exact quotes<br/>plus a proposed category"]
+  end
+  subgraph CHECK["Exact: verification gates"]
+    D["Quote found in document?<br/>Citation on allowed list?<br/>Amounts match intake?"]
+  end
+  subgraph CODE["Exact: rules engine"]
+    E["Decision table<br/>facts to treaty category"]
+    F["Two-key check<br/>model = table?"]
+    G["Tax calculator and form router<br/>Decimal arithmetic"]
+    H["Sensitivity<br/>flip each fact, rerun table"]
+  end
+  subgraph KNOW["Knowledge: versioned files"]
+    K["rules.yaml<br/>rates, forms, review_by date"]
+    L["authorities.yaml<br/>allowed citations and sources"]
+  end
+  M["Draft working paper and audit trace<br/>quotes, offsets, rule IDs, hashes, model ID"]
+  N["ESCALATE<br/>reason code and TDS scenarios<br/>no recommended number"]
+  subgraph HUMAN["Human: accountable"]
+    O["Chartered Accountant<br/>approve, change or reject, with reason<br/>signs Form 146 outside this system"]
+  end
+  A --> C
+  L --> C
+  C --> D
+  A --> D
+  B --> D
+  D -->|pass| E
+  D -->|fail| N
+  E --> F
+  F -->|agree| G
+  F -->|disagree or unresolved| N
+  K -->|dated rates and forms| G
+  G -->|stale rules, no rule for date, or missing input| N
+  G --> H
+  H --> M
+  M --> O
+  N --> O
+  O -->|logged decision| P["Append-only review log"]
+  classDef ai fill:#FBE9D9,stroke:#B85C1E,color:#222
+  classDef exact fill:#DDEBF7,stroke:#2F6DA8,color:#222
+  classDef human fill:#DFF2E1,stroke:#2E7D3A,color:#222
+  classDef stop fill:#F8DADA,stroke:#B3261E,color:#222
+  style IN fill:#F7F7F7,stroke:#BBB
+  style AI fill:#F7F7F7,stroke:#BBB
+  style CHECK fill:#F7F7F7,stroke:#BBB
+  style CODE fill:#F7F7F7,stroke:#BBB
+  style KNOW fill:#F7F7F7,stroke:#BBB
+  style HUMAN fill:#F7F7F7,stroke:#BBB
+  class C ai
+  class D,E,F,G,H exact
+  class O,P human
+  class N stop

@@ -1,0 +1,47 @@
+# The only authorities the model may cite. Text is paraphrased from the listed
+# source. It is not verbatim treaty text; a CA must read the original.
+ART12_RATE:
+  title: "India-US treaty Art. 12(2): source-country tax on royalties and included services"
+  summary: "Capped at 15% of gross for ordinary royalties and fees for included services."
+  status: secondary
+  source: "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+ART12_3_ROYALTY:
+  title: "India-US treaty Art. 12(3): royalties"
+  summary: "Payment for use of, or the right to use, copyright and similar rights. Narrower than the domestic definition."
+  status: secondary
+  source: "https://jurigram.com/blog/corporate-law/india-us-tax-treaty-dtaa-for-businesses-royalty-and-fts-withholding"
+ART12_4B_MAKE_AVAILABLE:
+  title: "India-US treaty Art. 12(4)(b) and MoU: make available"
+  summary: "Technical or consultancy services count only if the acquirer is enabled to apply the technology, or a technical plan or design is developed and transferred. Using a product that embodies technology is not enough."
+  status: official
+  source: "https://www.llmtax.uzh.ch/dam/jcr:88df95b6-4ebe-4440-9526-0bb2cfbe4614/1.%20India%20USA%20MoU%20concerning%20fees%20for%20included%20services%20in%20Article%2012.pdf"
+MOU_EX5_SOFTWARE_MOD:
+  title: "India-US MoU Example 5"
+  summary: "Modifying inventory software and transferring the modified program is an included service."
+  status: official
+  source: "https://www.llmtax.uzh.ch/dam/jcr:88df95b6-4ebe-4440-9526-0bb2cfbe4614/1.%20India%20USA%20MoU%20concerning%20fees%20for%20included%20services%20in%20Article%2012.pdf"
+MOU_EX8_LATER_TRAINING:
+  title: "India-US MoU Example 8"
+  summary: "Installation and initial training tied to a sale are excluded. Later updates and related training can be included services."
+  status: official
+  source: "https://www.llmtax.uzh.ch/dam/jcr:88df95b6-4ebe-4440-9526-0bb2cfbe4614/1.%20India%20USA%20MoU%20concerning%20fees%20for%20included%20services%20in%20Article%2012.pdf"
+ENGINEERING_ANALYSIS:
+  title: "Engineering Analysis v CIT (Supreme Court, 2 March 2021)"
+  summary: "End-user and distributor software payments under EULAs transferred no copyright and were not royalty, so no TDS arose."
+  status: secondary
+  source: "https://itatonline.org/archives/engineering-analysis-centre-of-excellence-private-limited-vs-cit-supreme-court-taxability-of-sums-received-for-supply-of-software-as-royalty-given-the-definition-of-royalties-contained-in-article/"
+KONY_DHC:
+  title: "CIT v Kony Inc (Delhi HC, 30 November 2023)"
+  summary: "Non-exclusive licence fees without copyright transfer were not royalty; maintenance fees did not meet make available under the India-US treaty."
+  status: official
+  source: "https://delhihighcourt.nic.in/app/showFileJudgment/RAS30112023ITA6692023_112421.pdf"
+OPENWAVE_ITAT:
+  title: "Openwave Mobility v DCIT, [2024] 162 taxmann.com 434 (Delhi Trib.)"
+  summary: "Training on how to use software did not meet make available. This sits in tension with a broad reading of MoU Example 8."
+  status: secondary
+  source: "https://www.taxmann.com/post/blog/educating-a-person-with-respect-to-functionality-of-software-doesnt-amount-to-rendering-of-technical-service-itat/"
+TREATY_RELIEF_DOCS:
+  title: "Income-tax Act 2025 s.159(8), Rule 75 and Form 41"
+  summary: "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41."
+  status: official
+  source: "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"

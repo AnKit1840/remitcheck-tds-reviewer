@@ -1,0 +1,200 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "9ee3d2313cf96a2904b27afe6b3715bd8a0387bd55b3eeabb6146f75e48f21e9",
+  "invoice_sha256": "1298862000f9d2f420a2b07f82105624ba2226e6bb34106a4eb44bc61b24d494",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Ridgeline Ops Inc.",
+    "amount": 30000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model BUSINESS_PROFITS_NO_PE; table BUSINESS_PROFITS_NO_PE"
+    }
+  ],
+  "escalations": [],
+  "flags": [
+    "CA to confirm Part D versus Part C with Form 146 when non-chargeability rests on the treaty."
+  ],
+  "reader": {
+    "reader": "gold_facts"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "yes",
+    "knowhow_transfer": "no",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "technical_service",
+      "value": "yes",
+      "document": "contract",
+      "start": 41,
+      "end": 82,
+      "quote": "analysts monitor Customer's cloud systems"
+    },
+    {
+      "fact": "knowhow_transfer",
+      "value": "no",
+      "document": "contract",
+      "start": 184,
+      "end": 253,
+      "quote": "Customer receives the reports only and will keep relying on Ridgeline"
+    }
+  ],
+  "decision": {
+    "category": "BUSINESS_PROFITS_NO_PE",
+    "code": "OK",
+    "reason": "Technical service does not make technology available."
+  },
+  "model_reasoning_unverified": "Hand-labelled facts.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "technical_service",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    },
+    {
+      "fact": "knowhow_transfer",
+      "from": "no",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "usage_training_beyond_initial",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:CONTESTED_TRAINING"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "396000",
+    "FIS": "396000"
+  },
+  "status": "READY_FOR_CA_REVIEW",
+  "category": "BUSINESS_PROFITS_NO_PE",
+  "tax": {
+    "gross_inr": "2640000",
+    "tds_inr": "0",
+    "effective_rate_pct": "0",
+    "basis": "treaty_nil",
+    "steps": [
+      "30000 USD x 88.00 = INR 2,640,000.00",
+      "No TDS: business profits, no PE"
+    ],
+    "rules_used": [
+      "ART12_4B_MAKE_AVAILABLE"
+    ]
+  },
+  "forms": {
+    "route": "Form 145 Part D candidate",
+    "certificate_required": null,
+    "flag": "CA to confirm Part D versus Part C with Form 146 when non-chargeability rests on the treaty."
+  },
+  "authorities": {
+    "ART12_4B_MAKE_AVAILABLE": {
+      "title": "India-US treaty Art. 12(4)(b) and MoU: make available",
+      "summary": "Technical or consultancy services count only if the acquirer is enabled to apply the technology, or a technical plan or design is developed and transferred. Using a product that embodies technology is not enough.",
+      "status": "official",
+      "source": "https://www.llmtax.uzh.ch/dam/jcr:88df95b6-4ebe-4440-9526-0bb2cfbe4614/1.%20India%20USA%20MoU%20concerning%20fees%20for%20included%20services%20in%20Article%2012.pdf"
+    },
+    "ENGINEERING_ANALYSIS": {
+      "title": "Engineering Analysis v CIT (Supreme Court, 2 March 2021)",
+      "summary": "End-user and distributor software payments under EULAs transferred no copyright and were not royalty, so no TDS arose.",
+      "status": "secondary",
+      "source": "https://itatonline.org/archives/engineering-analysis-centre-of-excellence-private-limited-vs-cit-supreme-court-taxability-of-sums-received-for-supply-of-software-as-royalty-given-the-definition-of-royalties-contained-in-article/"
+    },
+    "TREATY_RELIEF_DOCS": {
+      "title": "Income-tax Act 2025 s.159(8), Rule 75 and Form 41",
+      "summary": "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41.",
+      "status": "official",
+      "source": "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"
+    }
+  },
+  "trace_sha256": "79ec67c23a967cb6a2102bf308071740497b9bf57eb43276d65ebb0d83f5574a"
+}

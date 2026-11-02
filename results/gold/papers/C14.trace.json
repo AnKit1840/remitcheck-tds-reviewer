@@ -1,0 +1,121 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "f2422ae89a906e74624f62900eac77b74b07748bd40eabbd98d3e956200b9e85",
+  "invoice_sha256": "98bd7dfad8ece7923a890273fd0422ed9a1a60f4d5f84cae487e174552db9bee",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Atlas Integrators Inc.",
+    "amount": 90000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model UNRESOLVED; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "PE_RISK",
+      "reason": "Payee presence in India; permanent establishment analysis is out of scope."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "gold_facts"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "yes",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "india_presence",
+      "value": "yes",
+      "document": "contract",
+      "start": 11,
+      "end": 73,
+      "quote": "place four engineers at Customer's Pune office for nine months"
+    }
+  ],
+  "decision": {
+    "category": null,
+    "code": "PE_RISK",
+    "reason": "Payee presence in India; permanent establishment analysis is out of scope."
+  },
+  "model_reasoning_unverified": "Hand-labelled facts.",
+  "what_would_change": [
+    {
+      "fact": "india_presence",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "1188000",
+    "FIS": "1188000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "65ee98eee401a8bdd923e021060b53ea4d25c9292c37bcb3ee452b1e8716adf4"
+}

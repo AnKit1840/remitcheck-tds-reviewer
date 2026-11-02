@@ -1,0 +1,209 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "6af0085f62c7912ef2e21930f3c2c674453100658f149d8e23bf2defa6c60e82",
+  "invoice_sha256": "7a8d2efe6a4d3e84906b69a30d968ed229ab8b158c656020af609c6e0034c6ca",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Delphi Analytics Inc.",
+    "amount": 12000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": false,
+      "detail": "technical_service, usage_training_beyond_initial"
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": false,
+      "detail": "model ROYALTY; table BUSINESS_PROFITS_NO_PE"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "UNVERIFIED_QUOTE",
+      "reason": "Quotes not found in the documents for: technical_service, usage_training_beyond_initial"
+    },
+    {
+      "code": "TWO_KEY_DISAGREEMENT",
+      "reason": "Model proposed ROYALTY; fact table gave BUSINESS_PROFITS_NO_PE."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "openrouter/free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "no",
+    "program_or_design_transferred": "no",
+    "technical_service": "no",
+    "knowhow_transfer": "silent",
+    "software_access_only": "yes",
+    "usage_training_beyond_initial": "no",
+    "india_presence": "silent",
+    "mixed_unallocated": "no",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "copyright_rights_granted",
+      "value": "no",
+      "document": "contract",
+      "start": 131,
+      "end": 223,
+      "quote": "Customer shall not make copies except one backup, and may not modify or resell the software."
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "value": "no",
+      "document": "contract",
+      "start": 96,
+      "end": 130,
+      "quote": "Delphi Studio, a standard product."
+    },
+    {
+      "fact": "software_access_only",
+      "value": "yes",
+      "document": "contract",
+      "start": 57,
+      "end": 130,
+      "quote": "licence to install and use 40 seats of Delphi Studio, a standard product."
+    },
+    {
+      "fact": "mixed_unallocated",
+      "value": "no",
+      "document": "invoice",
+      "start": 0,
+      "end": 63,
+      "quote": "Invoice 88. Delphi Studio, 40 seats. Amount payable USD 12,000."
+    }
+  ],
+  "decision": {
+    "category": "BUSINESS_PROFITS_NO_PE",
+    "code": "OK",
+    "reason": "Use of standard software without copyright rights."
+  },
+  "model_reasoning_unverified": "Payment is for a non-exclusive licence to use standard software (Delphi Studio) with no modification, distribution, or know-how transfer. Under Art. 12(3) of the India-US treaty, such consideration for the right to use copyrighted software constitutes royalty.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "from": "no",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "technical_service",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ESCALATE:MISSING_MAKE_AVAILABLE_FACT"
+    },
+    {
+      "fact": "software_access_only",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    },
+    {
+      "fact": "usage_training_beyond_initial",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ESCALATE:CONTESTED_TRAINING"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "158400",
+    "FIS": "158400"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": "BUSINESS_PROFITS_NO_PE",
+  "authorities": {
+    "ART12_4B_MAKE_AVAILABLE": {
+      "title": "India-US treaty Art. 12(4)(b) and MoU: make available",
+      "summary": "Technical or consultancy services count only if the acquirer is enabled to apply the technology, or a technical plan or design is developed and transferred. Using a product that embodies technology is not enough.",
+      "status": "official",
+      "source": "https://www.llmtax.uzh.ch/dam/jcr:88df95b6-4ebe-4440-9526-0bb2cfbe4614/1.%20India%20USA%20MoU%20concerning%20fees%20for%20included%20services%20in%20Article%2012.pdf"
+    },
+    "ENGINEERING_ANALYSIS": {
+      "title": "Engineering Analysis v CIT (Supreme Court, 2 March 2021)",
+      "summary": "End-user and distributor software payments under EULAs transferred no copyright and were not royalty, so no TDS arose.",
+      "status": "secondary",
+      "source": "https://itatonline.org/archives/engineering-analysis-centre-of-excellence-private-limited-vs-cit-supreme-court-taxability-of-sums-received-for-supply-of-software-as-royalty-given-the-definition-of-royalties-contained-in-article/"
+    },
+    "TREATY_RELIEF_DOCS": {
+      "title": "Income-tax Act 2025 s.159(8), Rule 75 and Form 41",
+      "summary": "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41.",
+      "status": "official",
+      "source": "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"
+    }
+  },
+  "trace_sha256": "a77307eeb14237f725483777b6f47dcad5132235b8d2ebbe65200771efd1cd84"
+}

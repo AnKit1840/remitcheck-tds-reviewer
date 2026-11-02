@@ -1,0 +1,169 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "cc7cd5ca52fb6bcf41a2442ea325f8b4515e100802224d5b995421fbc0f34a9f",
+  "invoice_sha256": "d1ba1a86fb990e4d1013194694168c6ea94d7d8f05407e5a9a7ceeac61550e17",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 50000,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Birch Audio Inc.",
+    "amount": 5000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model ROYALTY; table ROYALTY"
+    }
+  ],
+  "escalations": [],
+  "flags": [
+    "Rule treaty_royalty_pct rests on a secondary source; CA to confirm."
+  ],
+  "reader": {
+    "reader": "baseline_keywords"
+  },
+  "facts": {
+    "copyright_rights_granted": "yes",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "copyright_rights_granted",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 89,
+      "quote": "Birch grants Customer the right to reproduce the Birch sound library in Customer's games."
+    }
+  ],
+  "decision": {
+    "category": "ROYALTY",
+    "code": "OK",
+    "reason": "Customer receives rights to exploit copyright."
+  },
+  "model_reasoning_unverified": "Keyword baseline.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "66000",
+    "FIS": "66000"
+  },
+  "status": "READY_FOR_CA_REVIEW",
+  "category": "ROYALTY",
+  "tax": {
+    "gross_inr": "440000",
+    "tds_inr": "66000",
+    "effective_rate_pct": "15",
+    "basis": "treaty",
+    "steps": [
+      "5000 USD x 88.00 = INR 440,000.00",
+      "Treaty rate 15% (no surcharge or cess)",
+      "TDS = 440,000.00 x 15% = INR 66,000"
+    ],
+    "rules_used": [
+      "treaty_royalty_pct"
+    ]
+  },
+  "forms": {
+    "route": "Form 145 Part A",
+    "certificate_required": false,
+    "flag": null
+  },
+  "authorities": {
+    "ART12_RATE": {
+      "title": "India-US treaty Art. 12(2): source-country tax on royalties and included services",
+      "summary": "Capped at 15% of gross for ordinary royalties and fees for included services.",
+      "status": "secondary",
+      "source": "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+    },
+    "ART12_3_ROYALTY": {
+      "title": "India-US treaty Art. 12(3): royalties",
+      "summary": "Payment for use of, or the right to use, copyright and similar rights. Narrower than the domestic definition.",
+      "status": "secondary",
+      "source": "https://jurigram.com/blog/corporate-law/india-us-tax-treaty-dtaa-for-businesses-royalty-and-fts-withholding"
+    },
+    "TREATY_RELIEF_DOCS": {
+      "title": "Income-tax Act 2025 s.159(8), Rule 75 and Form 41",
+      "summary": "Treaty relief needs a TRC valid for the relevant year and an electronically filed Form 41.",
+      "status": "official",
+      "source": "https://www.incometaxindia.gov.in/documents/d/guest/form-41-faqs"
+    }
+  },
+  "trace_sha256": "57268e35caf9674e2558f601518ece7e9387ba7cd2270dc11e0bdfac912f1568"
+}

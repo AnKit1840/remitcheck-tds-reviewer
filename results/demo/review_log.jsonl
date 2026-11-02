@@ -1,0 +1,1 @@
+{"trace_file_sha256": "ed7c77b5d3b29289528ee5424796f07481e8adafd33c16304699b923e8dbade1", "decision": "change", "reason": "Baseline missed the embed right", "ca": "SYNTHETIC CA", "at": "2026-11-02T21:06:44.948154+00:00"}

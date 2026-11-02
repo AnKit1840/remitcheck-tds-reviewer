@@ -1,0 +1,27 @@
+contract: 'SaaS Subscription Agreement. Customer subscribes to the Lumen service.
+
+  As part of the subscription, Customer may copy the Lumen client library, embed it
+  in apps sold to Customer''s own customers, and create adapted versions of it.
+
+  Subscription fee: USD 50,000.
+
+  '
+invoice: Invoice 9. SaaS subscription. USD 50,000.
+intake:
+  currency: USD
+  fx_rate: '88.00'
+  payee_country: US
+  payee_type: company
+  remittance_date: '2026-11-15'
+  credit_date: '2026-10-31'
+  ytd_taxable_inr: 0
+  trc_from: '2026-01-01'
+  trc_to: '2026-12-31'
+  treaty_form_filed: true
+  beneficial_owner_declared: true
+  no_pe_declared: true
+  pan: false
+  alt_details_furnished: true
+  payee_income_band: up_to_1cr
+  payee: Lumen Stack Inc.
+  amount: 50000

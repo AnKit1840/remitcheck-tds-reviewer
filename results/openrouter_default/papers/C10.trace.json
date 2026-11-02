@@ -1,0 +1,159 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "6c688ff8df4529f190ff0e9bd787649823cd065f874898ba36239be59dd1955a",
+  "invoice_sha256": "4f686c34dd2f9b6e38728efc0272fd6d1766926c42a69501315c4efc99f2fe6a",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Sable Security Inc.",
+    "amount": 54000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": false,
+      "detail": "contract states 45000; intake states 54000"
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model UNRESOLVED; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "AMOUNT_CONFLICT",
+      "reason": "contract states 45000; intake states 54000"
+    },
+    {
+      "code": "INSUFFICIENT_FACTS",
+      "reason": "Facts do not identify what is being paid for."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "openrouter/free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3.5-lightning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "no",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [
+    {
+      "fact": "copyright_rights_granted",
+      "value": "no",
+      "document": "contract",
+      "start": 74,
+      "end": 115,
+      "quote": "It receives no right to copy or alter it."
+    }
+  ],
+  "decision": {
+    "category": null,
+    "code": "INSUFFICIENT_FACTS",
+    "reason": "Facts do not identify what is being paid for."
+  },
+  "model_reasoning_unverified": "Extracted facts from contract and invoice: Sable dashboard access for internal use only, no copy/alter rights; annual fee $45k, invoice $54k. No evidence of program transfer, technical service, knowhow, training, India presence, tax clause, or mixed allocation. Software access category unresolved without treaty specifics.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "technical_service",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MISSING_MAKE_AVAILABLE_FACT"
+    },
+    {
+      "fact": "software_access_only",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "BUSINESS_PROFITS_NO_PE"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "712800",
+    "FIS": "712800"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "7a0150de8aa610569577723a3a4eb7e1b8b9d1a737f2d9a46ab63c5c640082c3"
+}

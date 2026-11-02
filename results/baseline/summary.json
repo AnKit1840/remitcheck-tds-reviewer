@@ -1,0 +1,250 @@
+{
+  "summary": {
+    "reader": "baseline",
+    "cases": 16,
+    "correct": 9,
+    "unsafe_wrong_answers": 1,
+    "over_escalated": 4,
+    "escalated_wrong_reason": 2
+  },
+  "rows": [
+    {
+      "id": "C01",
+      "group": "clear",
+      "title": "Plain SaaS subscription",
+      "expected": "READY",
+      "got": "READY",
+      "category": "BUSINESS_PROFITS_NO_PE",
+      "tds": "0",
+      "codes": [],
+      "result": "correct",
+      "fact_errors": [
+        "copyright_rights_granted"
+      ]
+    },
+    {
+      "id": "C02",
+      "group": "clear",
+      "title": "Off-the-shelf end-user licence",
+      "expected": "READY",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "INSUFFICIENT_FACTS"
+      ],
+      "result": "over_escalated",
+      "fact_errors": [
+        "software_access_only",
+        "copyright_rights_granted"
+      ]
+    },
+    {
+      "id": "C03",
+      "group": "clear",
+      "title": "Source licence with redistribution rights",
+      "expected": "READY",
+      "got": "READY",
+      "category": "ROYALTY",
+      "tds": "1320000",
+      "codes": [],
+      "result": "correct",
+      "fact_errors": []
+    },
+    {
+      "id": "C04",
+      "group": "clear",
+      "title": "Training that transfers capability",
+      "expected": "READY",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "INSUFFICIENT_FACTS"
+      ],
+      "result": "over_escalated",
+      "fact_errors": [
+        "technical_service",
+        "knowhow_transfer"
+      ]
+    },
+    {
+      "id": "C05",
+      "group": "ambiguous",
+      "title": "Called SaaS, but grants reproduction rights",
+      "expected": "READY",
+      "got": "READY",
+      "category": "BUSINESS_PROFITS_NO_PE",
+      "tds": "0",
+      "codes": [],
+      "result": "UNSAFE_WRONG_ANSWER",
+      "fact_errors": [
+        "copyright_rights_granted"
+      ]
+    },
+    {
+      "id": "C06",
+      "group": "ambiguous",
+      "title": "Called consulting, but no capability passes",
+      "expected": "READY",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "MISSING_MAKE_AVAILABLE_FACT"
+      ],
+      "result": "over_escalated",
+      "fact_errors": [
+        "knowhow_transfer"
+      ]
+    },
+    {
+      "id": "C07",
+      "group": "ambiguous",
+      "title": "One price for platform and enablement",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "INSUFFICIENT_FACTS"
+      ],
+      "result": "escalated_wrong_reason",
+      "fact_errors": [
+        "mixed_unallocated"
+      ]
+    },
+    {
+      "id": "C08",
+      "group": "ambiguous",
+      "title": "Vague knowledge sharing",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "MISSING_MAKE_AVAILABLE_FACT"
+      ],
+      "result": "correct",
+      "fact_errors": []
+    },
+    {
+      "id": "C09",
+      "group": "missing_or_conflict",
+      "title": "Royalty without a TRC",
+      "expected": "READY",
+      "got": "READY",
+      "category": "ROYALTY",
+      "tds": "366080",
+      "codes": [],
+      "result": "correct",
+      "fact_errors": []
+    },
+    {
+      "id": "C10",
+      "group": "missing_or_conflict",
+      "title": "Invoice contradicts contract",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "AMOUNT_CONFLICT",
+        "INSUFFICIENT_FACTS"
+      ],
+      "result": "correct",
+      "fact_errors": [
+        "software_access_only",
+        "copyright_rights_granted"
+      ]
+    },
+    {
+      "id": "C11",
+      "group": "rule_change",
+      "title": "Credited before the new Act, paid after",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "REGIME_TRANSITION",
+        "INSUFFICIENT_FACTS"
+      ],
+      "result": "correct",
+      "fact_errors": [
+        "software_access_only",
+        "copyright_rights_granted"
+      ]
+    },
+    {
+      "id": "C12",
+      "group": "rule_change",
+      "title": "Remitted under the old Act",
+      "expected": "READY",
+      "got": "READY",
+      "category": "FIS",
+      "tds": "330000",
+      "codes": [],
+      "result": "correct",
+      "fact_errors": []
+    },
+    {
+      "id": "C13",
+      "group": "adversarial",
+      "title": "Contract instructs the reviewer",
+      "expected": "READY",
+      "got": "READY",
+      "category": "ROYALTY",
+      "tds": "462000",
+      "codes": [],
+      "result": "correct",
+      "fact_errors": []
+    },
+    {
+      "id": "C14",
+      "group": "adversarial",
+      "title": "Staff based in India",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "INSUFFICIENT_FACTS"
+      ],
+      "result": "escalated_wrong_reason",
+      "fact_errors": [
+        "india_presence"
+      ]
+    },
+    {
+      "id": "C15",
+      "group": "clear",
+      "title": "Net-of-tax clause",
+      "expected": "READY",
+      "got": "ESCALATE",
+      "category": null,
+      "tds": null,
+      "codes": [
+        "INSUFFICIENT_FACTS"
+      ],
+      "result": "over_escalated",
+      "fact_errors": [
+        "technical_service",
+        "knowhow_transfer",
+        "net_of_tax_clause"
+      ]
+    },
+    {
+      "id": "C16",
+      "group": "clear",
+      "title": "Below the cumulative certificate threshold",
+      "expected": "READY",
+      "got": "READY",
+      "category": "ROYALTY",
+      "tds": "66000",
+      "codes": [],
+      "result": "correct",
+      "fact_errors": []
+    }
+  ]
+}

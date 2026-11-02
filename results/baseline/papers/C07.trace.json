@@ -1,0 +1,142 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "5825581fc3c1c34b3673c945520859da5b2553068034e96278498ea54fe7bf21",
+  "invoice_sha256": "e20a23d1a641253d454fed329042aa28469678271bbc970691fba62a8deff6e0",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Vantage AI Inc.",
+    "amount": 80000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model UNRESOLVED; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "INSUFFICIENT_FACTS",
+      "reason": "Facts do not identify what is being paid for."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "baseline_keywords"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [],
+  "decision": {
+    "category": null,
+    "code": "INSUFFICIENT_FACTS",
+    "reason": "Facts do not identify what is being paid for."
+  },
+  "model_reasoning_unverified": "Keyword baseline.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "technical_service",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MISSING_MAKE_AVAILABLE_FACT"
+    },
+    {
+      "fact": "software_access_only",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "BUSINESS_PROFITS_NO_PE"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "1056000",
+    "FIS": "1056000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "f629776ecbef3125e3740d010d43b24ea94b18bfed64ca65282d5d10430491b2"
+}

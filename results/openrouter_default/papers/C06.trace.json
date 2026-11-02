@@ -1,0 +1,211 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "9ee3d2313cf96a2904b27afe6b3715bd8a0387bd55b3eeabb6146f75e48f21e9",
+  "invoice_sha256": "1298862000f9d2f420a2b07f82105624ba2226e6bb34106a4eb44bc61b24d494",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-11-15",
+    "credit_date": "2026-10-31",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Ridgeline Ops Inc.",
+    "amount": 30000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-11-15"
+    },
+    {
+      "gate": "single_regime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model UNRESOLVED; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "MISSING_MAKE_AVAILABLE_FACT",
+      "reason": "Contract does not settle whether know-how is transferred."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "openrouter",
+    "requested_model": "openrouter/free",
+    "prompt_version": "v1",
+    "prompt_sha256": "00afa14f0ea2f7f49f31d69b36a7dbde9157c8fa272c28a89065725aef75fedb",
+    "served_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+  },
+  "facts": {
+    "copyright_rights_granted": "no",
+    "program_or_design_transferred": "no",
+    "technical_service": "yes",
+    "knowhow_transfer": "silent",
+    "software_access_only": "no",
+    "usage_training_beyond_initial": "no",
+    "india_presence": "no",
+    "mixed_unallocated": "no",
+    "net_of_tax_clause": "no"
+  },
+  "evidence": [
+    {
+      "fact": "copyright_rights_granted",
+      "value": "no",
+      "document": "contract",
+      "start": 184,
+      "end": 268,
+      "quote": "Customer receives the reports only and will keep relying on Ridgeline for this work."
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "value": "no",
+      "document": "contract",
+      "start": 184,
+      "end": 268,
+      "quote": "Customer receives the reports only and will keep relying on Ridgeline for this work."
+    },
+    {
+      "fact": "technical_service",
+      "value": "yes",
+      "document": "contract",
+      "start": 0,
+      "end": 30,
+      "quote": "Consulting Services Agreement."
+    },
+    {
+      "fact": "software_access_only",
+      "value": "no",
+      "document": "contract",
+      "start": 184,
+      "end": 268,
+      "quote": "Customer receives the reports only and will keep relying on Ridgeline for this work."
+    },
+    {
+      "fact": "usage_training_beyond_initial",
+      "value": "no",
+      "document": "contract",
+      "start": 184,
+      "end": 268,
+      "quote": "Customer receives the reports only and will keep relying on Ridgeline for this work."
+    },
+    {
+      "fact": "india_presence",
+      "value": "no",
+      "document": "contract",
+      "start": 31,
+      "end": 131,
+      "quote": "Ridgeline analysts monitor Customer's cloud systems from Texas and send a monthly exceptions report."
+    },
+    {
+      "fact": "mixed_unallocated",
+      "value": "no",
+      "document": "contract",
+      "start": 269,
+      "end": 285,
+      "quote": "Fee: USD 30,000."
+    },
+    {
+      "fact": "net_of_tax_clause",
+      "value": "no",
+      "document": "contract",
+      "start": 269,
+      "end": 285,
+      "quote": "Fee: USD 30,000."
+    }
+  ],
+  "decision": {
+    "category": null,
+    "code": "MISSING_MAKE_AVAILABLE_FACT",
+    "reason": "Contract does not settle whether know-how is transferred."
+  },
+  "model_reasoning_unverified": "The agreement is a consulting services contract with a single USD 30,000 fee for human technical work, no rights to reproduce, no program transfer, no software access, no training, no Indian presence, no tax clause, and no split pricing; thus category UNRESOLVED.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "from": "no",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "technical_service",
+      "from": "yes",
+      "to": "no",
+      "outcome": "ESCALATE:INSUFFICIENT_FACTS"
+    },
+    {
+      "fact": "knowhow_transfer",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "india_presence",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "no",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "396000",
+    "FIS": "396000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "51950e1ca0c3453cb41090bfb98995d347c90f25ce372db6697e92b078daa656"
+}

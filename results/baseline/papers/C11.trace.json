@@ -1,0 +1,146 @@
+{
+  "disclaimer": "Draft working paper for CA review. Not tax advice and not a certificate.",
+  "as_of": "2026-11-03",
+  "rule_pack": "2026.11-prototype",
+  "contract_sha256": "1cf2423f77d53dc21e9ffb8eac2d74c3d5719c2d66ed7e562a1022bcc98a677f",
+  "invoice_sha256": "32be8f3216a10691ef952e03c2eec17a3d55595988ee666364c5c8ed08dee346",
+  "intake": {
+    "currency": "USD",
+    "fx_rate": "88.00",
+    "payee_country": "US",
+    "payee_type": "company",
+    "remittance_date": "2026-04-10",
+    "credit_date": "2026-03-28",
+    "ytd_taxable_inr": 0,
+    "trc_from": "2026-01-01",
+    "trc_to": "2026-12-31",
+    "treaty_form_filed": true,
+    "beneficial_owner_declared": true,
+    "no_pe_declared": true,
+    "pan": false,
+    "alt_details_furnished": true,
+    "payee_income_band": "up_to_1cr",
+    "payee": "Meridian Cloud Inc.",
+    "amount": 70000
+  },
+  "gates": [
+    {
+      "gate": "rule_pack_current",
+      "passed": true,
+      "detail": "review_by 2027-03-31"
+    },
+    {
+      "gate": "rule_covers_date",
+      "passed": true,
+      "detail": "2026-04-10"
+    },
+    {
+      "gate": "single_regime",
+      "passed": false,
+      "detail": "credit 2026-03-28, remittance 2026-04-10"
+    },
+    {
+      "gate": "output_valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "quotes_found",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "citations_allowed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "amounts_agree",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "gate": "two_key_agreement",
+      "passed": true,
+      "detail": "model UNRESOLVED; table None"
+    }
+  ],
+  "escalations": [
+    {
+      "code": "REGIME_TRANSITION",
+      "reason": "Credit and remittance fall under different Acts; which rule governs deduction needs CA judgment."
+    },
+    {
+      "code": "INSUFFICIENT_FACTS",
+      "reason": "Facts do not identify what is being paid for."
+    }
+  ],
+  "flags": [],
+  "reader": {
+    "reader": "baseline_keywords"
+  },
+  "facts": {
+    "copyright_rights_granted": "silent",
+    "program_or_design_transferred": "silent",
+    "technical_service": "silent",
+    "knowhow_transfer": "silent",
+    "software_access_only": "silent",
+    "usage_training_beyond_initial": "silent",
+    "india_presence": "silent",
+    "mixed_unallocated": "silent",
+    "net_of_tax_clause": "silent"
+  },
+  "evidence": [],
+  "decision": {
+    "category": null,
+    "code": "INSUFFICIENT_FACTS",
+    "reason": "Facts do not identify what is being paid for."
+  },
+  "model_reasoning_unverified": "Keyword baseline.",
+  "what_would_change": [
+    {
+      "fact": "copyright_rights_granted",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ROYALTY"
+    },
+    {
+      "fact": "program_or_design_transferred",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "FIS"
+    },
+    {
+      "fact": "technical_service",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MISSING_MAKE_AVAILABLE_FACT"
+    },
+    {
+      "fact": "software_access_only",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "BUSINESS_PROFITS_NO_PE"
+    },
+    {
+      "fact": "india_presence",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:PE_RISK"
+    },
+    {
+      "fact": "mixed_unallocated",
+      "from": "silent",
+      "to": "yes",
+      "outcome": "ESCALATE:MIXED_UNALLOCATED"
+    }
+  ],
+  "exposure_scenarios": {
+    "BUSINESS_PROFITS_NO_PE": "0",
+    "ROYALTY": "924000",
+    "FIS": "924000"
+  },
+  "status": "ESCALATE_TO_CA",
+  "category": null,
+  "trace_sha256": "1ac50d75aa2a2e497a8a6f7afb8ab25b8307b329979daea3b01bd11a4575f8c1"
+}

@@ -1,0 +1,66 @@
+# Versioned, dated rule pack. Code reads every rate and threshold from here.
+# status: official = read on a government/court/treaty-MoU source
+#         secondary = professional or commercial guide only; CA must confirm
+#         carried_forward = last confirmed for an earlier year and assumed unchanged
+pack_version: "2026.11-prototype"
+last_reviewed: "2026-11-03"
+review_by: "2027-03-31"   # after this date every case escalates (fail closed)
+regimes:
+  - id: ACT_1961
+    from: "2023-04-01"
+    to: "2026-03-31"
+    declaration_form: "Form 15CA"
+    certificate_form: "Form 15CB"
+    treaty_declaration_form: "Form 10F"
+    status: secondary
+    source: "https://www.setindiabiz.com/?p=22611"
+  - id: ACT_2025
+    from: "2026-04-01"
+    to: null
+    declaration_form: "Form 145"
+    certificate_form: "Form 146"
+    treaty_declaration_form: "Form 41"
+    status: secondary
+    source: "https://www.bdo.in/en-gb/news/2026/new-tax-declaration-forms-introduced-for-nri-remittances"
+rates:
+  treaty_royalty_pct:
+    value: "15"
+    article: "India-US treaty Art. 12(2)(a)"
+    status: secondary
+    source: "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+  treaty_fis_pct:
+    value: "15"
+    article: "India-US treaty Art. 12(2)(a)"
+    status: secondary
+    source: "https://beaconfiling.com/dtaa/fts-tax-rate-india-usa"
+  act_royalty_pct:
+    value: "20"
+    article: "Income-tax Act 2025 s.393(2), Table Sl. 17"
+    status: secondary
+    source: "https://blog.tdsman.com/2026/05/tds-on-payments-to-non-residents-section-3932-section-195/"
+  act_fts_pct:
+    value: "20"
+    article: "Income-tax Act 2025 s.393(2), Table Sl. 17"
+    status: secondary
+    source: "https://blog.tdsman.com/2026/05/tds-on-payments-to-non-residents-section-3932-section-195/"
+  cess_pct:
+    value: "4"
+    article: "Health and education cess"
+    status: carried_forward
+    source: "https://www.incometaxindia.gov.in/foreign-company"
+  no_pan_floor_pct:
+    value: "20"
+    article: "Income-tax Act 2025 s.397(2)"
+    status: secondary
+    source: "https://calcguru.in/?p=2933"
+  certificate_threshold_inr:
+    value: "500000"
+    article: "Rule 220, Income-tax Rules 2026 (cumulative per payee per tax year)"
+    status: secondary
+    source: "https://www.setindiabiz.com/?p=22611"
+surcharge_bands_pct:      # foreign company; marginal relief is NOT modelled
+  status: carried_forward
+  source: "https://www.incometaxindia.gov.in/foreign-company"
+  up_to_1cr: "0"
+  from_1cr_to_10cr: "2"
+  above_10cr: "5"
