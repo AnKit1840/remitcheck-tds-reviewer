@@ -81,3 +81,4 @@ The key design point I would defend: `technical_service = yes` alone is not enou
 A service that deploys software, integrates a system, or provides product support does not pass that test. Only if `knowhow_transfer = yes` (the customer can now do it without the vendor) does the function return FIS. If `knowhow_transfer` is `silent` — the contract is ambiguous — the function escalates rather than guessing. If `knowhow_transfer = no` but `usage_training_beyond_initial = yes`, it escalates again because MoU Example 8 and the *Openwave* decision point in different directions on later training.
 
 I read both the MoU text and the tribunal orders to build this branch, and I understand every path in the function well enough to trace it on a whiteboard with a specific contract in front of me.
+

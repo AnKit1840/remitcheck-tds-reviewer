@@ -175,3 +175,4 @@ The gold run validates that the rules and tax calculations match the author's ow
 3. **Model selection.** The prototype works with any OpenAI-compatible endpoint. Choosing a model with stable versioning and appropriate data retention terms is a pre-production requirement.
 4. **Other treaties.** Adding the India-UK or India-Singapore treaty would require a new decision table and different fact questions (many treaties have no "make available" test at all).
 5. **Portal integration.** Real production value comes from pre-filling Form 145/146 data. That requires integration with the Income Tax India portal, which is outside this prototype's scope.
+
