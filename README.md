@@ -18,9 +18,13 @@ python -m pytest -q
 python eval/run_eval.py --reader gold       # Hand-labelled facts: tests the exact layer
 python eval/run_eval.py --reader baseline   # Keyword rules: the non-AI comparison
 
-# Live LLM run
+# Live LLM run (e.g. using a free model from OpenRouter)
+# Linux/macOS:
 export OPENROUTER_API_KEY=your_key
-python eval/run_eval.py --reader openrouter --model MODEL_ID
+# Windows PowerShell:
+# $env:OPENROUTER_API_KEY="your_key"
+
+python eval/run_eval.py --reader openrouter --model "nvidia/nemotron-3.5-lightning:free"
 ```
 
 Each run writes `summary.md`, plus a working paper and trace per case, to `results/`. Use a specific free model ID from OpenRouter so the run can be repeated. Without `--model`, it uses the `openrouter/free` router, which may serve different models; each trace records the one used.

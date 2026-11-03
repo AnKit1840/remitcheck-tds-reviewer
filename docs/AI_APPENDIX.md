@@ -12,7 +12,7 @@ I did not have a tax background. I used the following prompt (paraphrased) to bu
 
 > *"Explain the 'make available' test in Article 12(4)(b) of the India-US DTAA. Walk me through how a court distinguishes a payment for using technology from a payment that transfers the ability to apply technology. Give me concrete examples."*
 
-This gave me the conceptual spine of the fact table. I then checked it against the actual MoU text (linked in `authorities.yaml`) and two court decisions cited in the codebase — *Engineering Analysis Centre of Excellence v CIT* (Supreme Court, 2021) and *Openwave Mobility v DCIT* (Delhi ITAT, 2024).
+This gave me the conceptual spine of the fact table. I then checked it against the actual MoU text (linked in `authorities.yaml`) and the authorities cited in the codebase — *Engineering Analysis Centre of Excellence v CIT* (Supreme Court, 2021) and *Openwave Mobility v DCIT* (Delhi ITAT, 2024).
 
 **2. Structuring the 9-fact extraction prompt**
 
@@ -42,7 +42,7 @@ Early iterations returned a single JSON blob with facts, category, and TDS toget
 
 **Suggested: "the free tier is fine for production"**
 
-When I asked about model reliability, the LLM was optimistic. The evaluation results tell a different story: the free OpenRouter router routes each call to whichever model happens to be available, and the quality varies enough to cause consistent over-escalation on cases that a stable model handles correctly. I documented this honestly in the results table rather than hiding it.
+When I asked about model reliability, the LLM was optimistic about using free-tier models. Early evaluation with OpenRouter's unpinned free router routed requests across six different models with varying behavior. When pinned to a single model (`nvidia/nemotron-3.5-lightning:free`), the model scored 9/16 with 6 over-escalations. Rather than asserting production-readiness, I documented these failure modes honestly in the scorecard.
 
 **Corrected: `locate()` was case-sensitive initially**
 
