@@ -4,7 +4,7 @@ A prototype that drafts a CA working paper for Indian companies paying US vendor
 
 **This is not tax advice.** All contracts, companies and labels in this repo are synthetic. The expected answers were written by the author and have not been validated by a CA.
 
-Design details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | AI Appendix: [docs/AI_APPENDIX.md](docs/AI_APPENDIX.md)
+Design details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ## Run it
 
