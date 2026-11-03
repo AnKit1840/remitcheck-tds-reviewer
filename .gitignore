@@ -2,3 +2,5 @@ __pycache__/
 .pytest_cache/
 .env
 *.pdf
+docs/WRITTEN_BRIEF.md
+docs/written_brief.html
